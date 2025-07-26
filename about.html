@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Techa | Courses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto+Mono&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgb(212, 203, 203);
+      font-family: 'Roboto Mono', monospace;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background-color: #1b1b2f;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #5c61e0, #5c25dd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 10px rgba(0, 188, 212, 0.5);
+    }
+
+    .tagline {
+      font-family:'Lucida Sans', sans-serif;
+      font-size: 16px;
+      color: rgb(186, 210, 235);
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .highlight {
+      color: #80dbf9;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      margin-left: 16px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      background-color: #000;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: white;
+      color: #000;
+    }
+
+    .course-section {
+      padding: 60px 40px;
+      font-family: 'Montserrat', sans-serif;
+      color: #1b1b2f;
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .course-section h1 {
+      text-align: center;
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 40px;
+      background: linear-gradient(90deg, #50a3c0, #6ee7b7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      text-transform: uppercase;
+    }
+
+    .course-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .course-card-link {
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease;
+    }
+
+    .course-card-link:hover {
+      transform: translateY(-3px);
+    }
+
+    .course-card {
+      background: #8282a6;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      max-width: 300px;
+      transition: 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .course-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1c1c2e;
+    }
+
+    .course-card p {
+      font-size: 16px;
+      color: #3e3e5e;
+      line-height: 1.5;
+    }
+
+    footer {
+      background-color: rgb(30, 28, 62);
+      color: #bababf;
+      text-align: center;
+      padding: 15px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo-wrapper">
+      <span class="logo">Techa</span>
+      <span class="tagline">
+        Putting the 
+        <span class="highlight">t</span><span class="highlight">e</span><span class="tagline">a</span><span class="highlight">c</span><span class="highlight">h</span> 
+        into 
+        <span class="highlight">t</span><span class="highlight">e</span><span class="highlight">c</span><span class="highlight">h</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">Courses</a>
+      <a href="lead.html">Leadership</a>
+      <a href="volunteer.html">Volunteering</a>
+    </div>
+  </nav>
+
+  <section class="course-section">
+    <h1>Our Courses</h1>
+    <div class="course-grid">
+      <a href="intro copy.html" class="course-card-link">
+        <div class="course-card">
+          <h3>🚀 Intro to Python</h3>
+          <p>Learn the fundamentals of programming through real-world examples and fun projects. No experience needed!</p>
+        </div>
+      </a>
+
+      <a href="ai.html" class="course-card-link">
+        <div class="course-card">
+          <h3>🤖 AI for Teens *In progress!*</h3>
+          <p>Dive into artificial intelligence and explore how it powers the tech around us—from TikTok to ChatGPT.</p>
+        </div>
+      </a>
+
+      <a href="website.html" class="course-card-link">
+        <div class="course-card">
+          <h3>🌐 Website in a Weekend *In progress!*</h3>
+          <p>Build and launch your own personal or portfolio website using HTML, CSS, and creativity!</p>
+        </div>
+      </a>
+
+      <a href="app.html" class="course-card-link">
+        <div class="course-card">
+          <h3>📱 App Prototyping *In progress!*</h3>
+          <p>Design and prototype your own mobile app using Figma. Learn how tech products are created!</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Techa. All rights reserved.</p>
+  </footer>
+</body>
+</html>

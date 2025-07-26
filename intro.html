@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Techa | Intro to Python</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #5c61e0;
+      --accent: #80dbf9;
+      --dark-bg: #1b1b2f;
+      --text-light: #f1f1f1;
+      --text-muted: #c2c2c2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(27, 27, 47, 0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo-wrapper {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #5c61e0, #5c25dd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 10px rgba(0, 188, 212, 0.5);
+    }
+.tagline {
+      font-family:'Lucida Sans', sans-serif;
+      font-size: 16px;
+      color: rgb(186, 210, 235);
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links a {
+      margin-left: 16px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      background-color: #000;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: white;
+      color: #000;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #5c61e0, #1b1b2f);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #dcdcdc;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .content h2 {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .content p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .code-block {
+      background-color: #2d2d3a;
+      color: #ffffff;
+      font-family: 'Roboto Mono', monospace;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+.highlight {
+      color: #80dbf9;
+      font-weight: bold;
+    }
+    .cta a {
+      padding: 14px 30px;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+
+    .cta a:hover {
+      background: #4239be;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #151522;
+      color: #888;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        margin: 6px 8px 0 0;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+     <div class="logo-wrapper">
+      <span class="logo">Techa</span>
+      <span class="tagline">
+        Putting the 
+        <span class="highlight">t</span><span class="highlight">e</span><span class="tagline">a</span><span class="highlight">c</span><span class="highlight">h</span> 
+        into 
+        <span class="highlight">t</span><span class="highlight">e</span><span class="highlight">c</span><span class="highlight">h</span>
+      </span>
+    </div>
+    
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">Resources</a>
+      <a href="lead.html">Leadership</a>
+      <a href="volunteer.html">Volunteer</a>
+    </div>
+  </nav>
+<style> h2 {
+  border-bottom: 2px solid #00bcd4; /* teal-ish line */
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.code-block {
+  border-bottom: 1.5px solid #444; /* subtle line after code blocks */
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+</style>
+  <section class="hero">
+    <h1>Lesson 1: Intro to Python</h1>
+    <p>Learn the basics of Python — perfect for beginners and future tech leaders.</p>
+  </section>
+
+  <section class="content">
+    <h2>Why Learn Python?</h2>
+    <p>Python is one of the most popular and beginner-friendly programming languages. It’s used by developers at Google, NASA, and startups all over the world.</p>
+
+    <h2>First Python Code</h2>
+    <div class="code-block">
+print("Hello, world!")
+    </div>
+    <p>This simple line prints text to the screen. It’s often your first step into the world of programming.</p>
+
+    <h2>Using Comments</h2>
+   <div class="code-block">
+  # Integer<br><br>
+  age = 14<br><br>
+
+  # Float<br><br>
+  temperature = 36.6<br><br>
+
+  # Boolean<br><br>
+  is_coding_fun = True<br><br>
+
+  # String<br><br>
+  name = "Techa"<br><br>
+
+  # List<br><br>
+  colors = ["red", "blue", "green"]<br><br>
+
+  # Tuple<br><br>
+  coordinates = (10, 20)<br><br>
+
+  # Set<br><br>
+  unique_numbers = {1, 2, 3}<br><br>
+
+  # Dictionary<br><br>
+  student = {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;"name": "Alex",<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;"age": 14,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;"grade": "A"<br>
+  }
+</div>
+
+
+  <div class="cta">
+    <a href="python_project.html">Start Your First Python Project</a>
+  </div>
+</section>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Practice - High Scores</title>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython_stdlib.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1d1f2f, #20222f);
+      color: #f0f0f5;
+      margin: 0;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      max-width: 600px;
+      padding-left: 0;
+      list-style: inside;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 600px;
+      height: 180px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      resize: vertical;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      background: #ffcc00;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(255, 204, 0, 0.5);
+      transition: background 0.25s ease;
+    }
+
+    button:hover {
+      background: #e6b800;
+    }
+
+    pre {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 16px 20px;
+      border-radius: 10px;
+      color: #e0e0e0;
+      width: 100%;
+      max-width: 600px;
+      white-space: pre-wrap;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body onload="brython()">
+  <h1>Python Practice - High Scores</h1>
+
+  <ul>
+    <li>Create a list of scores.</li>
+    <li>Use a <code>for</code> loop to check each score.</li>
+    <li>Print only the scores that are <code>&gt;= 90</code>.</li>
+    <li>If you print <strong>at least 2 high scores</strong>, 🎉 confetti appears!</li>
+  </ul>
+
+  <textarea id="code" placeholder="Type your Python code here..."></textarea>
+
+  <div class="btn-container">
+    <button onclick="location.href='lesson12.html'">←Previous Lesson</button>
+    <button onclick="runPython()">Run Code</button>
+    <button onclick="location.href='lesson13.html'">Next Lesson →</button>
+  </div>
+
+  <h3>Output:</h3>
+  <pre id="output"></pre>
+
+  <script type="text/javascript">
+    function runPython() {
+      const code = document.getElementById('code').value;
+      const outputEl = document.getElementById('output');
+      outputEl.textContent = '';
+
+      const oldScript = document.getElementById('userCode');
+      if (oldScript) oldScript.remove();
+
+      const script = document.createElement('script');
+      script.type = 'text/python3';
+      script.id = 'userCode';
+
+      script.textContent = `
+import sys
+from browser import document
+
+class OutputCatcher:
+    def __init__(self):
+        self.buffer = ''
+    def write(self, data):
+        self.buffer += data
+        document['output'].textContent = self.buffer
+    def flush(self):
+        pass
+
+sys.stdout = sys.stderr = OutputCatcher()
+
+try:
+${code.split('\n').map(line => '    ' + line).join('\n')}
+except Exception as e:
+    print('Error:', e)
+`;
+
+      document.body.appendChild(script);
+      brython(1);
+
+      setTimeout(() => {
+        const out = outputEl.textContent.trim();
+        const lines = out.split('\n');
+        const numbers = lines.map(l => parseInt(l)).filter(n => !isNaN(n));
+        const highScores = numbers.filter(n => n >= 90);
+
+        if (highScores.length >= 2) {
+          confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+        }
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
+

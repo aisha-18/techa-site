@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Techa | Lesson 26: Congratulations!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #5c61e0;
+      --accent: #80dbf9;
+      --dark-bg: #1b1b2f;
+      --text-light: #f1f1f1;
+      --text-muted: #c2c2c2;
+      --code-bg: #2d2d3a;
+      --highlight: #00e676;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+    nav {
+      position: sticky; top: 0;
+      background-color: rgba(27, 27, 47, 0.95);
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 20px 40px;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .logo-wrapper { display: flex; flex-direction: column; line-height: 1.2; }
+    .logo {
+      font-size: 40px; font-weight: 800;
+      background: linear-gradient(90deg, #5c61e0, #5c25dd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 4px; text-transform: uppercase;
+      text-shadow: 2px 2px 10px rgba(0,188,212,0.5);
+    }
+    .tagline {
+      font-size: 16px; color: rgb(186,210,235);
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+    }
+    .highlight { color: #80dbf9; font-weight: bold; }
+    .nav-links a {
+      margin-left: 16px; padding: 10px 16px;
+      border-radius: 6px; background-color: #000;
+      color: white; text-decoration: none;
+      font-size: 14px; transition: 0.3s; user-select: none;
+    }
+    .nav-links a:hover { background-color: white; color: #000; }
+    .hero {
+      text-align: center; padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #5c61e0, #1b1b2f);
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 { font-size: 48px; margin-bottom: 10px; }
+    .hero p {
+      font-size: 20px; color: #dcdcdc;
+      max-width: 700px; margin: 0 auto;
+    }
+    .content {
+      max-width: 900px; margin: 60px auto 80px;
+      padding: 0 20px; flex-grow: 1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .content h2 {
+      font-size: 48px;
+      color: var(--highlight);
+      margin-bottom: 20px;
+      font-weight: 900;
+      text-shadow: 0 0 15px var(--highlight);
+    }
+    .content h3 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .content p {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+      text-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+    .emoji {
+      font-size: 80px;
+      margin-bottom: 30px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-20px);}
+    }
+    .cta-button {
+      background-color: var(--primary);
+      color: white;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 14px rgba(92,97,224,0.6);
+      transition: background-color 0.3s ease;
+      user-select: none;
+      display: inline-block;
+    }
+    .cta-button:hover {
+      background-color: #4239be;
+      box-shadow: 0 6px 30px rgba(66,57,190,0.9);
+    }
+    footer {
+      text-align: center; padding: 30px 20px;
+      background-color: #151522; color: #888;
+      font-size: 14px; margin-top: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Confetti container */
+    .confetti {
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      overflow: visible;
+      z-index: 9999;
+    }
+    /* Each confetti piece */
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      opacity: 0.9;
+      will-change: transform;
+      border-radius: 2px;
+      animation-name: confetti-fall, confetti-rotate;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-10vh); }
+      100% { transform: translateY(110vh); }
+    }
+    @keyframes confetti-rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo-wrapper">
+      <span class="logo">Techa</span>
+      <span class="tagline">
+        Putting the <span class="highlight">t</span><span class="highlight">e</span>
+        <span class="tagline">a</span><span class="highlight">c</span><span class="highlight">h</span>
+        into <span class="highlight">t</span><span class="highlight">e</span>
+        <span class="highlight">c</span><span class="highlight">h</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">Resources</a>
+      <a href="lead.html">Leadership</a>
+      <a href="volunteer.html">Volunteer</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Lesson 26: Congratulations!</h1>
+    <p>Celebrate finishing the Techa course and get ready for your next coding adventure!</p>
+  </section>
+
+  <section class="content">
+    <div class="emoji">🎉🎉🎉</div>
+    <h2>You Did It!</h2>
+    <p>
+      You’ve completed the entire Techa course! All that hard work and dedication has paid off. 
+      You’re now equipped with amazing coding skills and ready to build incredible projects.
+    </p>
+    <p>
+      The future is yours — go out and make something amazing! Take a break, celebrate, and then start creating.
+    </p>
+    <a href="index.html" class="cta-button">Back to Home</a>
+  </section>
+
+  <footer>
+    &copy; 2025 Techa. All rights reserved.
+  </footer>
+
+  <!-- Confetti container -->
+  <div class="confetti" aria-hidden="true"></div>
+
+  <script>
+    const confettiContainer = document.querySelector('.confetti');
+    const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#00bcd4', '#009688', '#4caf50', '#cddc39', '#ffeb3b', '#ff9800', '#ff5722'];
+
+    function randomRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function createConfettiPiece() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti-piece');
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.left = `${Math.random() * 100}vw`;
+      confetti.style.width = `${randomRange(7, 12)}px`;
+      confetti.style.height = `${randomRange(7, 12)}px`;
+      confetti.style.opacity = Math.random() + 0.5;
+
+      // Random animation duration between 3 to 7 seconds
+      const fallDuration = randomRange(3, 7);
+      confetti.style.animationDuration = `${fallDuration}s, ${fallDuration}s`;
+
+      // Random animation delay to stagger confetti start times
+      confetti.style.animationDelay = `${Math.random() * 7}s, ${Math.random() * 7}s`;
+
+      confettiContainer.appendChild(confetti);
+
+      // Remove confetti piece after animation to avoid DOM overload
+      setTimeout(() => {
+        confetti.remove();
+        createConfettiPiece(); // Create a new piece for continuous confetti
+      }, fallDuration * 1000);
+    }
+
+    // Create 100 confetti pieces initially
+    for (let i = 0; i < 100; i++) {
+      createConfettiPiece();
+    }
+  </script>
+</body>
+</html>
+
+

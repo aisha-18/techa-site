@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Techa | Quiz: Lessons 1–6 Review</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    /* Same styling from lessons */
+    :root {
+      --primary: #5c61e0;
+      --accent: #80dbf9;
+      --dark-bg: #1b1b2f;
+      --text-light: #f1f1f1;
+      --text-muted: #c2c2c2;
+      --code-bg: #2d2d3a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    nav {
+      background-color: rgba(27, 27, 47, 0.95);
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 20px 40px;
+      backdrop-filter: blur(10px);
+    }
+    .logo-wrapper {
+      display: flex; flex-direction: column;
+    }
+    .logo {
+      font-size: 40px; font-weight: 800;
+      background: linear-gradient(90deg, #5c61e0, #5c25dd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    .tagline {
+      font-size: 16px; color: rgb(186, 210, 235);
+    }
+    .highlight {
+      color: #80dbf9; font-weight: bold;
+    }
+    .nav-links a {
+      margin-left: 16px; padding: 10px 16px;
+      border-radius: 6px; background-color: #000;
+      color: white; text-decoration: none;
+      font-size: 14px;
+    }
+    .nav-links a:hover {
+      background-color: white; color: #000;
+    }
+    .hero {
+      text-align: center; padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #5c61e0, #1b1b2f);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 48px; margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 20px; max-width: 700px;
+      margin: 0 auto;
+    }
+    .content {
+      max-width: 800px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+    }
+    .question {
+      margin-bottom: 40px;
+      padding: 20px;
+      background-color: var(--code-bg);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .question h2 {
+      font-size: 20px; margin-bottom: 10px;
+      color: var(--accent);
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+    button:hover {
+      background: #4239be;
+    }
+    #results {
+      background-color: #252538;
+      color: #80dbf9;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #151522;
+      color: #888;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo-wrapper">
+      <span class="logo">Techa</span>
+      <span class="tagline">
+        Putting the <span class="highlight">t</span><span class="highlight">e</span><span class="tagline">a</span><span class="highlight">c</span><span class="highlight">h</span>
+        into <span class="highlight">t</span><span class="highlight">e</span><span class="highlight">c</span><span class="highlight">h</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">Resources</a>
+      <a href="lead.html">Leadership</a>
+      <a href="volunteer.html">Volunteer</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Quiz: Lessons 1–6 Review</h1>
+    <p>Test your knowledge of Python basics: variables, types, I/O, loops, and conditionals!</p>
+  </section>
+
+  <section class="content">
+    <form id="quizForm">
+      <div class="question">
+        <h2>1. What is a variable in Python?</h2>
+        <label><input type="radio" name="q1" value="a">A place to store data</label>
+        <label><input type="radio" name="q1" value="b">A type of loop</label>
+        <label><input type="radio" name="q1" value="c">A built-in function</label>
+      </div>
+
+      <div class="question">
+        <h2>2. Which of the following is a string?</h2>
+        <label><input type="radio" name="q2" value="a">"Hello"</label>
+        <label><input type="radio" name="q2" value="b">42</label>
+        <label><input type="radio" name="q2" value="c">True</label>
+      </div>
+
+      <div class="question">
+        <h2>3. What does the <code>input()</code> function do?</h2>
+        <label><input type="radio" name="q3" value="a">Outputs data to the screen</label>
+        <label><input type="radio" name="q3" value="b">Gets data from the user</label>
+        <label><input type="radio" name="q3" value="c">Adds two numbers</label>
+      </div>
+
+      <div class="question">
+        <h2>4. What does this loop do?</h2>
+        <h2> <code>for i in range(3):</code></h2>
+        <h2> <code>print(i)</code></h2>
+        <label><input type="radio" name="q4" value="a">Prints 1, 2, 3</label>
+        <label><input type="radio" name="q4" value="b">Prints 0, 1, 2</label>
+        <label><input type="radio" name="q4" value="c">Prints 0, 1, 2, 3</label>
+      </div>
+
+      <div class="question">
+        <h2>5. What is the result of this while loop?<br><code>count = 0<br>while count &lt; 2:<br>&nbsp;&nbsp;&nbsp;print(count)<br>&nbsp;&nbsp;&nbsp;count += 1</code></h2>
+        <label><input type="radio" name="q5" value="a">0 1</label>
+        <label><input type="radio" name="q5" value="b">1 2</label>
+        <label><input type="radio" name="q5" value="c">It runs forever</label>
+      </div>
+
+      <div class="question">
+        <h2>6. What does this conditional print?<br><code>age = 18<br>if age &gt;= 18:<br>&nbsp;&nbsp;&nbsp;print("Adult")<br>else:<br>&nbsp;&nbsp;&nbsp;print("Minor")</code></h2>
+        <label><input type="radio" name="q6" value="a">Minor</label>
+        <label><input type="radio" name="q6" value="b">Adult</label>
+        <label><input type="radio" name="q6" value="c">Nothing</label>
+      </div>
+
+      <button type="button" onclick="gradeQuiz()">Submit Answers</button>
+    </form>
+
+    <div id="results"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 Techa - Putting the teach into tech
+  </footer>
+
+  <script>
+    function gradeQuiz() {
+      const answers = {
+        q1: "a",
+        q2: "a",
+        q3: "b",
+        q4: "b",
+        q5: "a",
+        q6: "b"
+      };
+      let score = 0;
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+      const resultText = `You got ${score} out of 6 correct!`;
+      document.getElementById("results").textContent = resultText;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Techa | Lesson 15: Python Vocabulary</title>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython_stdlib.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #5c61e0;
+      --accent: #80dbf9;
+      --dark-bg: #1b1b2f;
+      --text-light: #f1f1f1;
+      --text-muted: #c2c2c2;
+      --code-bg: #2d2d3a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 80px; /* make space for fixed button */
+    }
+    nav {
+      position: sticky; top: 0;
+      background-color: rgba(27, 27, 47, 0.95);
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 20px 40px;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .logo-wrapper {
+      display: flex; flex-direction: column; line-height: 1.2;
+    }
+    .logo {
+      font-size: 40px; font-weight: 800;
+      background: linear-gradient(90deg, #5c61e0, #5c25dd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 4px; text-transform: uppercase;
+      text-shadow: 2px 2px 10px rgba(0,188,212,0.5);
+    }
+    .tagline {
+      font-size: 16px; color: rgb(186,210,235);
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+    }
+    .highlight {
+      color: #80dbf9; font-weight: bold;
+    }
+    .nav-links a {
+      margin-left: 16px; padding: 10px 16px;
+      border-radius: 6px; background-color: #000;
+      color: white; text-decoration: none;
+      font-size: 14px; transition: 0.3s; user-select: none;
+    }
+    .nav-links a:hover {
+      background-color: white; color: #000;
+    }
+    .hero {
+      text-align: center; padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #5c61e0, #1b1b2f);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 48px; margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 20px; color: #dcdcdc;
+      max-width: 700px; margin: 0 auto;
+    }
+    .content {
+      max-width: 900px; margin: 60px auto 40px;
+      padding: 0 20px; flex-grow: 1;
+    }
+    h2 {
+      font-size: 28px; color: var(--accent);
+      margin-bottom: 10px; border-bottom: 2px solid #00bcd4;
+      padding-bottom: 8px; margin-bottom: 16px;
+    }
+    dt {
+      font-weight: 700; color: #80dbf9; margin-top: 20px;
+    }
+    dd {
+      margin-left: 20px; margin-bottom: 15px; color: var(--text-muted);
+    }
+    .code-block {
+      background-color: var(--code-bg); color: #ffffff;
+      font-family: 'Roboto Mono', monospace;
+      padding: 12px 16px; border-radius: 8px;
+      overflow-x: auto; margin: 10px 0 20px 0;
+      font-size: 14px; white-space: pre-wrap;
+      border-bottom: 1.5px solid #444;
+    }
+    footer {
+      text-align: center; padding: 30px 20px;
+      background-color: #151522; color: #888;
+      font-size: 14px; margin-top: auto;
+    }
+    /* Next Lesson fixed button */
+    .next-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(92,97,224,0.6);
+      transition: background 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      z-index: 1001;
+    }
+    .next-btn:hover, .next-btn:focus {
+      background-color: #4239be;
+      outline: none;
+    }
+  </style>
+</head>
+<body onload="brython()">
+
+  <nav>
+    <div class="logo-wrapper">
+      <span class="logo">Techa</span>
+      <span class="tagline">
+        Putting the <span class="highlight">t</span><span class="highlight">e</span>
+        <span class="tagline">a</span><span class="highlight">c</span><span class="highlight">h</span>
+        into <span class="highlight">t</span><span class="highlight">e</span>
+        <span class="highlight">c</span><span class="highlight">h</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">Resources</a>
+      <a href="lead.html">Leadership</a>
+      <a href="volunteer.html">Volunteer</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Lesson 15: Python Vocabulary</h1>
+    <p>Learn the key terms and concepts every Python programmer should know.</p>
+  </section>
+
+  <section class="content">
+    <dl>
+      <dt>Variable</dt>
+      <dd>A name that refers to a value stored in memory. Variables store data you can manipulate.</dd>
+
+      <dt>Data Types</dt>
+      <dd>The kind of data a variable holds, e.g., <code>int</code> (integer), <code>float</code> (decimal numbers), <code>str</code> (strings/text), <code>bool</code> (True/False).</dd>
+
+      <dt>List</dt>
+      <dd>An ordered collection of values, which can be changed. Example: <code>my_list = [1, 2, 3]</code>.</dd>
+
+      <dt>Tuple</dt>
+      <dd>An ordered collection of values that cannot be changed (immutable). Example: <code>my_tuple = (1, 2, 3)</code>.</dd>
+
+      <dt>Dictionary</dt>
+      <dd>A collection of key-value pairs. Example: <code>my_dict = {"name": "Alex", "age": 25}</code>.</dd>
+
+      <dt>Function</dt>
+      <dd>A reusable block of code that performs a task. Defined with <code>def</code>. Example:
+        <div class="code-block">
+def greet(name):
+    print("Hello,", name)
+        </div>
+      </dd>
+
+      <dt>Loop</dt>
+      <dd>A control structure for repeating code. Common loops: <code>for</code> and <code>while</code>.</dd>
+
+      <dt>Conditional</dt>
+      <dd>Code that runs only if a condition is true, using <code>if</code>, <code>elif</code>, and <code>else</code>.</dd>
+
+      <dt>Class</dt>
+      <dd>A blueprint for creating objects (OOP). Defines attributes and methods.</dd>
+
+      <dt>Object</dt>
+      <dd>An instance of a class with specific data.</dd>
+
+      <dt>Module</dt>
+      <dd>A Python file with reusable code that can be imported.</dd>
+
+      <dt>Exception</dt>
+      <dd>An error that occurs during program execution, which can be handled using <code>try</code> and <code>except</code>.</dd>
+
+      <dt>Indentation</dt>
+      <dd>Whitespace at the start of a line that defines code blocks in Python. Proper indentation is required.</dd>
+
+      <dt>Comment</dt>
+      <dd>Text in the code ignored by Python, used for notes. Starts with <code>#</code>.</dd>
+
+      <dt>Boolean</dt>
+      <dd>A data type with only two values: <code>True</code> or <code>False</code>.</dd>
+
+      <dt>Operator</dt>
+      <dd>Symbols that perform operations on variables and values, like <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and comparison operators like <code>==</code>.</dd>
+    </dl>
+  </section>
+
+  <button class="next-btn" onclick="window.location.href='lesson16.html'">Next Lesson →</button>
+
+  <footer>
+    &copy; 2025 Techa. All rights reserved.
+  </footer>
+
+</body>
+</html>
+
+

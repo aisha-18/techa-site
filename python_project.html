@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python Practice</title>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython_stdlib.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+  /* Reset some defaults */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #212020, #212020);
+    margin: 0;
+    padding: 40px 20px;
+    color: #f0f0f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+  }
+
+  ul {
+    list-style: inside disc;
+    max-width: 480px;
+    padding-left: 0;
+    margin: 0 0 25px 0;
+    font-size: 1.1rem;
+    color: #d0d0e0;
+  }
+
+  ul li {
+    margin-bottom: 8px;
+  }
+
+  code {
+    background: rgba(255 255 255 / 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  textarea {
+    width: 100%;
+    max-width: 600px;
+    height: 180px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    padding: 16px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    resize: vertical;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    background: rgba(255 255 255 / 0.1);
+    color: #fff;
+    transition: background 0.3s ease;
+  }
+
+  textarea::placeholder {
+    color: #c1c1d1;
+  }
+
+  textarea:focus {
+    background: rgba(255 255 255 / 0.18);
+  }
+
+  .btn-container {
+    margin-top: 18px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  button {
+    background: #ffcc00;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: #3a2e00;
+    box-shadow: 0 6px 14px rgba(255, 204, 0, 0.5);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+    user-select: none;
+  }
+
+  button:hover,
+  button:focus {
+    background: #e6b800;
+    box-shadow: 0 8px 20px rgba(230, 184, 0, 0.7);
+    outline: none;
+  }
+button {
+  background: #ffcc00; /* bright orange */
+  color: #3a2e00;      /* dark text */
+  border: none;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(255, 204, 0, 0.5);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+
+button:hover,
+button:focus {
+  background: #e6b800; /* darker orange */
+  box-shadow: 0 8px 20px rgba(230, 184, 0, 0.7);
+  outline: none;
+}
+
+/* Remove specific #back-btn styles */
+#back-btn {
+  /* no separate style needed now */
+}
+
+
+  h3 {
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 1.6rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  }
+
+  pre {
+    background: rgba(0,0,0,0.75);
+    color: #e0e0e0;
+    border-radius: 12px;
+    padding: 20px 25px;
+    max-width: 600px;
+    width: 100%;
+    min-height: 90px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  @media (max-width: 650px) {
+    body {
+      padding: 30px 10px;
+    }
+    textarea, pre {
+      max-width: 100%;
+    }
+    button {
+      width: 100%;
+    }
+    .btn-container {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>
+</head>
+<body onload="brython()">
+
+<h1>Python Practice</h1>
+
+<ul>
+  <li>Print <code>"hello world"</code></li>
+  <li>Add a comment using <code>#</code></li>
+  <li>Store your <code>name</code> and <code>age</code> in variables</li>
+  <li>Print both <code>name</code> and <code>age</code> in a single line</li>
+</ul>
+
+<textarea id="code" placeholder="Type your Python code here..."></textarea>
+
+<div class="btn-container">
+  <button id="back-btn" onclick="location.href='intro.html'">← Back to Intro</button>
+  <button id="run-btn" onclick="runPython()">Run Code</button>
+  <button id="next-btn" onclick="location.href='lesson2.html'">Next Lesson →</button>
+</div>
+
+<h3>Output:</h3>
+<pre id="output"></pre>
+
+<script type="text/javascript">
+function runPython() {
+  const code = document.getElementById('code').value;
+  const outputEl = document.getElementById('output');
+  outputEl.textContent = '';
+
+  const oldScript = document.getElementById('userCode');
+  if (oldScript) oldScript.remove();
+
+  const script = document.createElement('script');
+  script.type = 'text/python3';
+  script.id = 'userCode';
+
+  script.textContent = `
+import sys
+from browser import document
+
+class OutputCatcher:
+    def __init__(self):
+        self.buffer = ''
+    def write(self, data):
+        self.buffer += data
+        document['output'].textContent = self.buffer
+    def flush(self):
+        pass
+
+sys.stdout = sys.stderr = OutputCatcher()
+
+try:
+${code.split('\n').map(line => '    ' + line).join('\n')}
+except Exception as e:
+    print('Error:', e)
+`;
+
+  document.body.appendChild(script);
+
+  brython(1);
+
+  setTimeout(() => {
+    const out = outputEl.textContent.trim();
+    const hasHelloWorld = out.toLowerCase().includes('hello world');
+    const hasNameAge = out.match(/(\w+)\s+\d+/);
+    const noErrors = !out.toLowerCase().includes('error');
+
+    if (hasHelloWorld && hasNameAge && noErrors) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+  }, 1500);
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

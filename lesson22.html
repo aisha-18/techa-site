@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Techa | Lesson 22: Exception Handling</title>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython_stdlib.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #5c61e0;
+      --accent: #80dbf9;
+      --dark-bg: #1b1b2f;
+      --text-light: #f1f1f1;
+      --text-muted: #c2c2c2;
+      --code-bg: #2d2d3a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      position: sticky; top: 0;
+      background-color: rgba(27, 27, 47, 0.95);
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 20px 40px;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .logo-wrapper { display: flex; flex-direction: column; line-height: 1.2; }
+    .logo {
+      font-size: 40px; font-weight: 800;
+      background: linear-gradient(90deg, #5c61e0, #5c25dd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 4px; text-transform: uppercase;
+      text-shadow: 2px 2px 10px rgba(0,188,212,0.5);
+    }
+    .tagline {
+      font-size: 16px; color: rgb(186,210,235);
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+    }
+    .highlight { color: #80dbf9; font-weight: bold; }
+    .nav-links a {
+      margin-left: 16px; padding: 10px 16px;
+      border-radius: 6px; background-color: #000;
+      color: white; text-decoration: none;
+      font-size: 14px; transition: 0.3s; user-select: none;
+    }
+    .nav-links a:hover { background-color: white; color: #000; }
+    .hero {
+      text-align: center; padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #5c61e0, #1b1b2f);
+      color: white;
+    }
+    .hero h1 { font-size: 48px; margin-bottom: 10px; }
+    .hero p {
+      font-size: 20px; color: #dcdcdc;
+      max-width: 700px; margin: 0 auto;
+    }
+    .content {
+      max-width: 900px; margin: 60px auto 40px;
+      padding: 0 20px; flex-grow: 1;
+    }
+    .content h2 {
+      font-size: 28px; color: var(--accent);
+      margin-bottom: 10px; border-bottom: 2px solid #00bcd4;
+      padding-bottom: 8px; margin-bottom: 16px;
+    }
+    .content p {
+      font-size: 16px; color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .lesson-part { margin-bottom: 40px; }
+    .code-block {
+      background-color: var(--code-bg); color: #ffffff;
+      font-family: 'Roboto Mono', monospace;
+      padding: 16px; border-radius: 8px;
+      overflow-x: auto; margin-bottom: 20px;
+      font-size: 14px; white-space: pre-wrap;
+      border-bottom: 1.5px solid #444;
+    }
+    textarea#codeInput {
+      width: 100%; height: 180px; background-color: var(--code-bg);
+      color: #f1f1f1; border-radius: 10px; border: none;
+      padding: 14px; font-family: 'Roboto Mono', monospace;
+      font-size: 14px; resize: vertical;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      outline: none; margin-bottom: 20px;
+    }
+    button#runBtn {
+      background: var(--primary); border: none;
+      border-radius: 30px; padding: 14px 30px;
+      font-size: 16px; font-weight: 600; color: white;
+      cursor: pointer; box-shadow: 0 6px 14px rgba(92,97,224,0.6);
+      transition: background 0.3s ease; display: block;
+      margin: 0 auto 30px;
+    }
+    button#runBtn:hover, button#runBtn:focus { background: #4239be; outline: none; }
+    pre#output {
+      background-color: var(--code-bg); color: #80dbf9;
+      border-radius: 8px; padding: 16px; min-height: 90px;
+      font-family: 'Roboto Mono', monospace; font-size: 14px;
+      white-space: pre-wrap; overflow-wrap: break-word;
+      box-shadow: inset 0 0 10px rgba(128,219,249,0.2);
+      margin-bottom: 40px; user-select: text;
+    }
+    .cta {
+      text-align: center; margin-top: 10px;
+    }
+    .cta a {
+      padding: 14px 30px; background: var(--primary);
+      color: white; border-radius: 8px; text-decoration: none;
+      font-weight: 600; font-size: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      transition: background 0.3s ease; user-select: none;
+    }
+    .cta a:hover { background: #4239be; }
+    footer {
+      text-align: center; padding: 30px 20px;
+      background-color: #151522; color: #888;
+      font-size: 14px; margin-top: auto;
+    }
+  </style>
+</head>
+<body onload="brython()">
+
+  <nav>
+    <div class="logo-wrapper">
+      <span class="logo">Techa</span>
+      <span class="tagline">
+        Putting the <span class="highlight">t</span><span class="highlight">e</span>
+        <span class="tagline">a</span><span class="highlight">c</span><span class="highlight">h</span>
+        into <span class="highlight">t</span><span class="highlight">e</span>
+        <span class="highlight">c</span><span class="highlight">h</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">Resources</a>
+      <a href="lead.html">Leadership</a>
+      <a href="volunteer.html">Volunteer</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Lesson 22: Exception Handling</h1>
+    <p>Learn how to handle errors gracefully in Python programs using try-except blocks.</p>
+  </section>
+
+  <section class="content">
+    <div class="lesson-part">
+      <h2>What is Exception Handling?</h2>
+      <p>Exceptions are errors detected during program execution. Handling exceptions lets your program continue running even when errors occur.</p>
+    </div>
+
+    <div class="lesson-part">
+      <h2>Try and Except</h2>
+      <p>Use <code>try</code> to wrap code that might cause an error, and <code>except</code> to catch and handle the error.</p>
+      <div class="code-block">
+<pre>
+try:
+    num = int(input("Enter a number: "))
+    print("Number is", num)
+except ValueError:
+    print("That's not a valid number!")
+</pre>
+      </div>
+    </div>
+
+    <div class="lesson-part">
+      <h2>Handling Multiple Exceptions</h2>
+      <p>You can handle different exception types separately:</p>
+      <div class="code-block">
+<pre>
+try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+except Exception as e:
+    print("Some other error:", e)
+</pre>
+      </div>
+    </div>
+
+    <div class="lesson-part">
+      <h2>Finally Block</h2>
+      <p><code>finally</code> always runs whether or not an exception occurred. Useful for cleanup.</p>
+      <div class="code-block">
+<pre>
+try:
+    file = open("test.txt", "r")
+    content = file.read()
+except FileNotFoundError:
+    print("File not found.")
+finally:
+    print("Execution complete.")
+</pre>
+      </div>
+    </div>
+
+    <h2>Try It Yourself!</h2>
+    <p>Write code that asks for a number and handles invalid input gracefully.</p>
+
+    <textarea id="codeInput" spellcheck="false">
+try:
+    num = int(input("Enter a number: "))
+    print("You entered:", num)
+except ValueError:
+    print("Oops! That's not a number.")
+    </textarea>
+
+    <button id="runBtn">Run Code</button>
+
+    <pre id="output"></pre>
+
+    <div class="cta">
+      <a href="lesson23.html">Next Lesson →</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Techa - All rights reserved.
+  </footer>
+
+  <script type="text/python">
+from browser import document, console
+import sys
+import io
+
+def run_code(ev):
+    code = document["codeInput"].value
+    output_area = document["output"]
+    output_area.text = ""
+    sys.stdout = io.StringIO()
+    sys.stderr = io.StringIO()
+    try:
+        exec(code)
+        result = sys.stdout.getvalue()
+    except Exception as e:
+        result = f"Error: {e}"
+    output_area.text = result
+    sys.stdout = sys.__stdout__
+    sys.stderr = sys.__stderr__
+
+document["runBtn"].bind("click", run_code)
+  </script>
+
+</body>
+</html>
